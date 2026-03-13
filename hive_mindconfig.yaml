@@ -1,0 +1,75 @@
+# Evolution Ecosystem - HiveMind Music Generation Configuration
+# Version: 1.0.0
+
+# Firebase Configuration
+firebase:
+  project_id: "evolution-ecosystem-music"
+  database_url: "https://evolution-ecosystem-music.firebaseio.com"
+  storage_bucket: "evolution-ecosystem-music.appspot.com"
+  credentials_path: "./credentials/firebase_service_account.json"
+
+# Audio Processing Settings
+audio:
+  sample_rate: 44100
+  bit_depth: 16
+  target_lufs: -14.0  # YouTube/Spotify loudness standard
+  duration_minutes: 45
+  duration_maxutes: 60
+  fade_in_ms: 5000
+  fade_out_ms: 8000
+
+# Generative Parameters
+generation:
+  bpm_range: [60, 85]
+  key_choices: ["C_major", "G_major", "D_minor", "A_minor"]
+  chord_complexity: [1, 3]  # 1: simple triads, 3: extended chords
+  pad_layers: [2, 4]
+  jazz_sample_probability: 0.7
+
+# Data Ingestion Sources
+data_sources:
+  weather:
+    enabled: true
+    api_key_env: "OPENWEATHER_API_KEY"
+    cities: ["New York", "Tokyo", "London", "Sydney"]
+  
+  time:
+    enabled: true
+    timezones: ["UTC", "America/New_York", "Europe/London", "Asia/Tokyo"]
+  
+  social:
+    twitter_enabled: false  # Requires OAuth approval
+    instagram_enabled: false  # Requires Meta API access
+    trend_keywords: ["study", "focus", "lofi", "concentration"]
+
+# File Structure
+paths:
+  sessions: "./sessions"
+  samples: "./samples"
+  soundfonts: "./soundfonts"
+  exports: "./exports"
+  logs: "./logs"
+  
+  sample_subpaths:
+    jazz_loops: "jazz_loops"
+    ambiance: "ambiance_sounds"
+    foley: "foley"
+
+# Service Configuration
+services:
+  data_ingester_interval_minutes: 30
+  telemetry_collection_interval_hours: 6
+  max_retry_attempts: 3
+  retry_delay_seconds: 5
+  
+# Platform Targets
+platforms:
+  youtube:
+    category_id: "10"  # Music
+    privacy_status: "private"
+    tags: ["lofi", "study music", "focus", "concentration", "chillhop"]
+    
+  spotify:
+    genre: "Lo-Fi"
+    mood: "chill"
+    language: "en"
